@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="form__header">
+            <img src="images/logo.png" alt="logo" />
+            <h2>Регистрация пользователя</h2>
+        </div>
+        <form>
+            <div class="inputs">
+                <h3>Личные данные</h3>
+                <p class="surname">Фамилия</p>
+                <div class="input__box">
+                    <label for="surname">
+                        <input class="input1" type="text" name="surname" placeholder="Введите фамилию"
+                            onkeyup="surnameProvided()" />
+                    </label>
+                    <p>Поле обязательно для заполнения.
+                        <br>Используйте буквы русского алфавита.</p>
+                </div>
+                <div class="mandatory1 message_color"></div>
+                <p class="name">Имя</p>
+                <div class="input__box">
+                    <label for="name">
+                        <input class="input2" type="text" name="name" placeholder="Введите имя"
+                            onkeyup="nameProvided()" />
+                    </label>
+                    <p>Поле обязательно для заполнения.
+                        <br>Используйте буквы русского алфавита.</p>
+                </div>
+                <div class="mandatory2 message_color"></div>
+                <p>Отчество</p>
+                <div class="input__box">
+                    <label for="secondname">
+                        <input type="text" name="secondname" placeholder="Введите отчество" />
+                    </label>
+                    <p>Используйте буквы русского алфавита.</p>
+                </div>
+                <p class="email">Адрес электронной почты</p>
+                <div class="input__box">
+                    <label for="email">
+                        <input class="input3" type="text" name="email" placeholder="name@example.com"
+                            onkeyup="emailProvided()" />
+                    </label>
+                    <p>Не рекомендуется указывать чужой или<br>корпоративный адрес электронной почты.</p>
+                </div>
+                <div class="mandatory3 message_color"></div>
+                <p class="phone">Номер мобильного телефона</p>
+                <div class="input__box">
+                    <label for="phone">
+                        <input class="input4" type="number" name="phone" placeholder="+7(999)9999999"
+                            onkeyup="phoneProvided()" />
+                    </label>
+                    <p>Для подтверждения номера мобильного телефона<br>вам будет направлено SMS с кодом подтверждения.
+                    </p>
+                </div>
+                <div class="mandatory4 message_color"></div>
+            </div>
+        </form>
+        <form>
+            <div class="inputs">
+                <h3>Пароль</h3>
+                <p class="password1">Придумайте пароль</p>
+                <div class="input__box">
+                    <label for="password">
+                        <input class="input5" type="password" name="password" placeholder="Пароль"
+                            onkeyup="password1Provided()" />
+                    </label>
+                    <p>Не используйте одинаковые пароли на разных сайтах.</p>
+                </div>
+                <div class="mandatory5 message_color"></div>
+                <p class="password2">Повторите пароль, чтобы не ошибиться</p>
+                <div class="input__box">
+                    <label for="password">
+                        <input class="input6" type="password" name="password" placeholder="Ваш пароль еще раз"
+                            onkeyup="password2Provided()" />
+                    </label>
+                </div>
+                <div class="mandatory6 message_color"></div>
+            </div>
+        </form>
+        <form>
+            <div class="inputs">
+                <h3>Контрольный вопрос</h3>
+                <p>Контрольный вопрос</p>
+                <div class="input__box">
+                    <label for="question">
+                        <input type="text" name="question" placeholder="Введите контрольный вопрос" />
+                    </label>
+                </div>
+                <p>Ответ</p>
+                <div class="input__box">
+                    <label for="answer">
+                        <input type="text" name="answer" placeholder="Введите ответ на контрольный вопрос" />
+                    </label>
+                </div>
+                <div class="form__footer">
+                    <p>Нажимая на кнопку «Зарегистрироваться» вы соглашаетесь с <a class="conditions"
+                            href="https://www.mos.ru/legal/rules/" target="_blank">условиями
+                            использования</a></p>
+                    <button type="button" onclick="checkInput()" class="register__button">Зарегистрироваться</button>
+                </div>
+                <div class="welcome"></div>
+            </div>
+        </form>
+    </div>
+    <script src="index.js"></script>
+</body>
+
+</html>
