@@ -8,86 +8,81 @@ const correctColor = "rgba(0, 128, 0, 0.876)";
 const button = document.querySelector(".register__button");
 button.addEventListener("click", checkInput);
 
+// вывод ошибки на незаполненное поле
+function errorMessage(input, msg) {
+    document.querySelector(input).style.color = errorColor;
+    document.querySelector(msg).innerHTML = importantMessage;
+}
+
+// проверка заполненности полей и приветствие
 function checkInput() {
     let surname = document.querySelector('.input1').value;
     if (surname == '') {
-        document.querySelector('.surname').style.color = errorColor;
-        document.querySelector('.mandatory1').innerHTML = importantMessage;
+        errorMessage('.surname', '.mandatory1');
     }
     let name = document.querySelector('.input2').value;
     if (name == '') {
-        document.querySelector('.name').style.color = errorColor;
-        document.querySelector('.mandatory2').innerHTML = importantMessage;
+        errorMessage('.name', '.mandatory2');
     }
     let email = document.querySelector('.input3').value;
     if (email == '') {
-        document.querySelector('.email').style.color = errorColor;
-        document.querySelector('.mandatory3').innerHTML = importantMessage;
+        errorMessage('.email', '.mandatory3');
     }
     let phone = document.querySelector('.input4').value;
     if (phone == '') {
-        document.querySelector('.phone').style.color = errorColor;
-        document.querySelector('.mandatory4').innerHTML = phoneMessage;
+        errorMessage('.phone', '.mandatory4');
     }
     let password1 = document.querySelector('.input5').value;
     if (password1 == '') {
-        document.querySelector('.password1').style.color = errorColor;
-        document.querySelector('.mandatory5').innerHTML = importantMessage;
+        errorMessage('.password1', '.mandatory5');
     }
     let password2 = document.querySelector('.input6').value;
     if (password2 == '') {
-        document.querySelector('.password2').style.color = errorColor;
-        document.querySelector('.mandatory6').innerHTML = "Пароль не совпадает";
+        errorMessage('.password2', '.mandatory6');
     }
     if (surname !== '' && name !== '' && email !== '' && phone !== '' && password1 !== '' && password2 !== '') {
         document.querySelector('.welcome').innerHTML = (`Добро пожаловать, ${name}!`);
     }
 }
 
-const inputSurname = document.querySelector('.input1');
-inputSurname.addEventListener("keyup", surnameProvided);
-inputSurname.addEventListener("keyup", wrongSurnameInput);
-function surnameProvided() {
-    document.querySelector('.surname').style.color = correctColor;
-    document.querySelector('.mandatory1').innerHTML = "";
+// проверка на ввод обязательных полей
+function InputProvided(input, clear) {
+    document.querySelector(input).style.color = correctColor;
+    document.querySelector(clear).innerHTML = "";
 }
+
+const inputSurname = document.querySelector('.input1');
+inputSurname.addEventListener("keyup", function() {
+    InputProvided('.surname', '.mandatory1');
+});
+inputSurname.addEventListener("keyup", wrongSurnameInput);
 
 const inputName = document.querySelector('.input2');
-inputName.addEventListener("keyup", nameProvided);
+inputName.addEventListener("keyup", function() {
+    InputProvided('.name', '.mandatory2');
+});
 inputName.addEventListener("keyup", wrongNameInput);
-function nameProvided() {
-    document.querySelector('.name').style.color = correctColor;
-    document.querySelector('.mandatory2').innerHTML = "";
-}
 
 const inputEmail = document.querySelector('.input3');
-inputEmail.addEventListener("keyup", emailProvided);
-function emailProvided() {
-    document.querySelector('.email').style.color = correctColor;
-    document.querySelector('.mandatory3').innerHTML = "";
-}
+inputEmail.addEventListener("keyup", function() {
+    InputProvided('.email', '.mandatory3');
+});
 
 const inputPhone = document.querySelector('.input4');
-inputPhone.addEventListener("keyup", phoneProvided);
-function phoneProvided() {
-    document.querySelector('.phone').style.color = correctColor;
-    document.querySelector('.mandatory4').innerHTML = "";
-}  
+inputPhone.addEventListener("keyup", function() {
+    InputProvided('.phone', '.mandatory4');
+});
 
 const inputPassword1 = document.querySelector('.input5');
-inputPassword1.addEventListener("keyup", password1Provided);
-function password1Provided() {
-    document.querySelector('.password1').style.color = correctColor;
-    document.querySelector('.mandatory5').innerHTML = "";
-}
+inputPassword1.addEventListener("keyup", function() {
+    InputProvided('.password1', '.mandatory5');
+});
 
 const inputPassword2 = document.querySelector('.input6');
-inputPassword2.addEventListener("keyup", password2Provided);
+inputPassword2.addEventListener("keyup", function() {
+    InputProvided('.password2', '.mandatory6');
+});
 inputPassword2.addEventListener("keyup", passwordValidation);
-function password2Provided() {
-    document.querySelector('.password2').style.color = correctColor;
-    document.querySelector('.mandatory6').innerHTML = "";
-}
 
 // проверка на совпадение паролей 
 function passwordValidation() {
@@ -99,9 +94,9 @@ function passwordValidation() {
     }
 }    
 
-// проверка на киррилицу фамилии и имени
+// проверка на киррилицу
 function wrongSurnameInput() {
-    let englishLetters = /[a-z', 'A-Z', 'A-z']/; 
+    let englishLetters = /[a-z', 'A-Z', 'A-z']/;   
     if (englishLetters.test(this.value)) {
         document.querySelector('.surname').style.color = errorColor;
         document.querySelector('.mandatory1').innerHTML = incorrectLang;
